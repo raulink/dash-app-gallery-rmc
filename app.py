@@ -53,15 +53,6 @@ btn_group = html.Div([
             className='mt-2 mt-md-0 me-md-2'
         ),
         dbc.Button(
-            "Dash Docs",
-            id="dash-docs",
-            href="https://dash.plotly.com/",
-            target="_blank",
-            color='secondary',
-            outline=True,
-            className='text-nowrap mt-2 mt-md-0'
-        ),
-        dbc.Button(
             "Fullscreen App",
             id="open-fs-app",
             color='secondary',
