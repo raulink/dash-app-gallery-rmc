@@ -1,6 +1,6 @@
 # Dash App Gallery
 
-Esta funcionando con Python v3.13.1
+Esta funcionando con Python v3.9.23
 
 ## See it live at:
 
