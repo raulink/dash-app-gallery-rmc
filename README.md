@@ -1,5 +1,7 @@
 # Dash App Gallery
 
+Esta funcionando con Python v3.13.1
+
 ## See it live at:
 
 https://dash-example-index.herokuapp.com/
