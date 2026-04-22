@@ -30,3 +30,13 @@
 .dash-table-container .dropdown {
   position: static;
 }
+body {
+    font-family: 'Arial Narrow','Roboto', Arial, sans-serif;
+    font-size: 12px;
+}
+
+header {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}

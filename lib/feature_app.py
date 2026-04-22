@@ -16,6 +16,18 @@ from dash import html
 import dash_bootstrap_components as dbc
 
 
+almacen_types = {
+    # key  : value 
+    # name of link  : search term used to filter the code files
+    "Partidas": "partidas",
+    "Ingresos": "plotly express",
+    "Graph Objects": "graph objects",
+    "Dash DAQ": "dash daq",
+    "Dash Bootstrap Components": "dash bootstrap components",
+    "Dash Cytoscape": "dash cytoscape",
+}
+almacen_types = {key: almacen_types[key] for key in sorted(almacen_types)}
+
 figure_type = {
     # key  : value
     # name of link  : search term used to filter the code files
@@ -91,7 +103,24 @@ components = {key: components[key] for key in sorted(components)}
 
 feature_app_div = html.Div(
     [
-        dbc.Label("Featured Examples", className="fw-bolder"),
+        dbc.Label("Categorias de Aplicaciones", className="fw-bolder"),
+        dbc.Accordion(
+            [
+                dbc.AccordionItem(
+                    [
+                        dbc.Button(
+                            name,
+                            id={"type": "feature_app", "index": searchterm},
+                            color="link",
+                        )                        for name, searchterm in almacen_types.items()
+                    ],
+                    title="Almacenes",
+                ),
+            ],
+            start_collapsed=True,
+            id="featured-apps",
+        ),
+
         dbc.Accordion(
             [
                 dbc.AccordionItem(

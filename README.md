@@ -25,3 +25,4 @@ If you would like to contribute an app to the gallery, we would be delighted. Pl
 If you would like to add features or suggest a change to the design of the dash-app-gallery project,
 please see [CONTRIBUTING-DEV.md](https://github.com/AnnMarieW/dash-app-gallery/blob/main/CONTRIBUTING-DEV.md).
 
+Funciona con version de python v3.13.1 

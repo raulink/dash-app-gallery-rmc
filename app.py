@@ -18,7 +18,7 @@ vis_timeline_script = 'https://unpkg.com/vis-timeline@latest/standalone/umd/vis-
 app = Dash(
     __name__,
     use_pages=True,
-    external_stylesheets=[dbc.themes.SPACELAB, dark_hljs, dbc.icons.BOOTSTRAP, vis_timeline_css],
+    external_stylesheets=[dbc.themes.SPACELAB, dark_hljs, dbc.icons.BOOTSTRAP, vis_timeline_css, '/assets/1css.css'],
     external_scripts=[vis_timeline_script],
     suppress_callback_exceptions=True,
     prevent_initial_callbacks=True
@@ -36,7 +36,7 @@ for k in example_apps:
 
 fullscreen_modal = dbc.Modal(
     [
-        dbc.ModalHeader(dbc.ModalTitle("Full screen")),
+        dbc.ModalHeader(dbc.ModalTitle("Maximizar Grafico")),
         dbc.ModalBody(id="content-fs"),
     ],
     id="modal-fs",
@@ -45,7 +45,7 @@ fullscreen_modal = dbc.Modal(
 
 btn_group = html.Div([
         dbc.Button(
-            "Home",
+            "Inicio",
             id="overview",
             href=dash.get_relative_path("/"),
             color='secondary',
@@ -53,28 +53,24 @@ btn_group = html.Div([
             className='mt-2 mt-md-0 me-md-2'
         ),
         dbc.Button(
-            "Fullscreen App",
+            "Maximizar grafico",
             id="open-fs-app",
             color='secondary',
             outline=True,
         ),
-        dbc.Button(
-            "Fullscreen Code",
-            id="open-fs-code",
-            color='secondary',
-            outline=True,
-        ),
+        
 ], className='navbar-nav')
 
 
 navbar = dbc.Navbar([
     dbc.Container([
         html.A([
-            html.Img(src=logo, height=40, width=40, className='align-middle me-2'),
-            html.Span('Dash Example Index',
-                        className='d-none d-lg-inline-block align-middle'
+            #html.Img(src=logo, height=40, width=40, className='align-middle me-2'),
+            html.Span('Analisis y visualizacion de datos',
+                        className='d-none d-lg-inline-block align-middle',
+                        style={'fontFamily': "'Arial Narrow', sans-serif"}
                         ),
-            html.Span('Example Index', className='d-lg-none align-middle')
+            html.Span('Index', className='d-lg-none align-middle')
         ], href='/', className='navbar-brand fw-bold'),
 
         dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
@@ -85,21 +81,20 @@ navbar = dbc.Navbar([
             navbar=True
         )
     ], fluid=True)
-], color="dark")
+], color="light")
 
 
 footer = html.H4(
     [
         dcc.Link(
-            " Thank you contributors!",
+            " RMC@2026",
             className="bi bi-github",
-            href="https://github.com/AnnMarieW/dash-app-gallery/graphs/contributors",
+            href="http://www.lineas.miteleferico.bo",
             target="_blank",
         )
     ],
     className="p-4 mt-5 text-center",
 )
-
 
 app.layout = html.Div(
     [
@@ -107,22 +102,22 @@ app.layout = html.Div(
         fullscreen_modal,
         dbc.Container(dash.page_container, fluid=True),
         footer,
-        dcc.Location(id="url", refresh=True),
+        dcc.Location(id="url", refresh=True),   # for refreshing page when closing fullscreen modal, else callbacks don't fire
     ]
 )
 
 
 @app.callback(
     Output("open-fs-app", "className"),
-    Output("open-fs-code", "className"),
+    #Output("open-fs-code", "className"),
     Input("url", "pathname"),
 )
 def fullscreen(path):
     """Don't show fullscreen buttons on home page (gallery overview)"""
 
     if path == dash.get_relative_path("/"):
-        return "d-none", "d-none"
-    return "text-nowrap ms-md-2 mt-2 mt-md-0 me-md-2", "text-nowrap mt-2 mt-md-0 me-md-2"
+        return "d-none" #, "d-none"
+    return "text-nowrap ms-md-2 mt-2 mt-md-0 me-md-2" #, "text-nowrap mt-2 mt-md-0 me-md-2"
 
 
 # add callback for toggling the collapse on small screens
@@ -140,21 +135,22 @@ def toggle_navbar_collapse(n, is_open):
     Output("modal-fs", "is_open"),
     Output("content-fs", "children"),
     Input("open-fs-app", "n_clicks"),
-    Input("open-fs-code", "n_clicks"),
+    #Input("open-fs-code", "n_clicks"), -> n_code, 
     State("modal-fs", "is_open"),
     State("url", "pathname"),
 )
-def toggle_modal(n_app, n_code, is_open, pathname):
+def toggle_modal(n_app, is_open, pathname):
     filename = file_name_from_path(pathname)
     layout = None
-    code = None
+    #code = None
     if filename in example_apps:
         layout = example_apps[filename].layout
         code = example_source_codes[filename].replace(filename + "-x-", "")
         code = make_code_div(code)
-    content = layout if ctx.triggered_id == "open-fs-app" else code
+    #content = layout  if ctx.triggered_id == "open-fs-app" else code
+    content = layout 
 
-    if n_app or n_code:
+    if n_app : # or n_code
         return not is_open, content
     return is_open, content
 
@@ -171,4 +167,3 @@ def refresh_page(is_open, pathname):
 
 if __name__ == "__main__":
     app.run(debug=True)
-

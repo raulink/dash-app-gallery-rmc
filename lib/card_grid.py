@@ -15,7 +15,7 @@ def make_hover_image(page):
                 className="img-fluid hover-image",
             ),
             html.Div(
-                dbc.Button("See app", color="secondary"),
+                dbc.Button("Abrir", color="secondary"),
                 className="hover-overlay",
             ),
         ],

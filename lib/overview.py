@@ -56,6 +56,7 @@ def layout(code=None, **other):
                     dbc.Col(
                         [make_search_code_div(code), feature_app_div], md=6, className="py-4"
                     ),
+                    # TExto lateral si se desea quitar la ayuda 
                     dbc.Col(lib.overview_textbox.card, md=6, className="py-4"),
                 ], className='align-items-center'
             ),
