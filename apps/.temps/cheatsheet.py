@@ -1,6 +1,6 @@
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
-from examples.cheatsheets import callbacks, components, figures, layouts, hello_world, share
+from apps.cheatsheets import callbacks, components, figures, layouts, hello_world, share
 
 app=Dash()
 
