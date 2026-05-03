@@ -197,3 +197,5 @@ build
 dist
 venv
 .idea
+
+*.xlsx

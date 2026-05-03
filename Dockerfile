@@ -2,7 +2,8 @@
 FROM python:3.11
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-WORKDIR /code
-COPY requirements.txt /code/
-RUN pip install -r requirements.txt
-COPY app/ /code/
+WORKDIR /app
+COPY /app/requirements.txt /app/
+RUN ls -la /app/
+RUN pip install -r /app/requirements.txt
+#COPY app/ /app/
