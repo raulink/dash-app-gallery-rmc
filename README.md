@@ -2,6 +2,21 @@
 
 Esta funcionando con Python v3.9.23
 
+
+## Programa Base
+
+Para el programa base se eliminaron todos los programas anteriores, se los coloca en las carpetas .temp
+
+se renombra la carpeta examples a carpeta apps
+
+En el archivo utils.py se renombra EXAMPLE_APPS_DIR_NAME = "apps"
+
+Todas las referencias a examples. se renombra a apps.
+
+En la carpeta de pages, no se debe eliminar el archivo overview.py, es lo que provoca errores si se eliminasawwwwwww
+
+
+
 ## See it live at:
 
 https://dash-example-index.herokuapp.com/
