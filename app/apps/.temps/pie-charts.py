@@ -1,0 +1,41 @@
+from dash import Dash, dcc, html, Input, Output
+import plotly.express as px
+
+df = px.data.tips()
+
+app = Dash()
+
+app.layout = html.Div(
+    [
+        html.H4("Analysis of the restaurant sales"),
+        dcc.Graph(id="pie-charts-x-graph"),
+        html.Label("Names:", htmlFor="pie-charts-x-names"),
+        dcc.Dropdown(
+            id="pie-charts-x-names",
+            options=["smoker", "day", "time", "sex"],
+            value="day",
+            clearable=False,
+        ),
+        html.Label("Values:", htmlFor="pie-charts-x-values"),
+        dcc.Dropdown(
+            id="pie-charts-x-values",
+            options=["total_bill", "tip", "size"],
+            value="total_bill",
+            clearable=False,
+        ),
+    ]
+)
+
+
+@app.callback(
+    Output("pie-charts-x-graph", "figure"),
+    Input("pie-charts-x-names", "value"),
+    Input("pie-charts-x-values", "value"),
+)
+def generate_chart(names, values):
+    fig = px.pie(df, values=values, names=names, hole=0.3)
+    return fig
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
