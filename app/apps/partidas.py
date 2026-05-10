@@ -1,5 +1,6 @@
 import dash
 from dash import dash_table, dcc, html
+from dash import dcc, html, dash_table, Input, Output, State, callback_context
 import dash_bootstrap_components as dbc
 import pandas as pd
 from sqlalchemy import create_engine # Para la conexión a Postgres
@@ -9,6 +10,25 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 # Configuración de conexión a PostgreSQL
 # Ajusta estos valores con tus credenciales reales
 DB_URL = "postgresql://postgres:postgres@localhost:5432/ingresos_db"
+
+app.index_string = '''
+<!DOCTYPE html>
+<html>
+    <head>
+        {%metas%}
+        <title>Sistema de Salidas</title>
+        {%favicon%}
+        {%css%}
+        <style>
+            body, div, table, td, th, button, input, .dash-spreadsheet {
+                font-family: "Arial Narrow", Arial, sans-serif !important;
+            }
+            .modal-header .modal-title { font-weight: bold; }
+        </style>
+    </head>
+    <body>{%app_entry%}<footer>{%config%}{%scripts%}{%renderer%}</footer></body>
+</html>
+'''
 
 def obtener_datos():
     ruta_excel = 'uploads/Partidas_20240826.120509.xlsx'
@@ -100,7 +120,7 @@ def serve_layout():
         ])
     ], fluid=True)
 
-app.layout = serve_layout
+app.layout = serve_layout()
 
 if __name__ == '__main__':
     app.run(debug=True)
