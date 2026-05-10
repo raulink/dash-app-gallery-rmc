@@ -7,12 +7,15 @@ from dash import dcc, html, dash_table, Input, Output, State, callback_context
 import dash_bootstrap_components as dbc
 from sqlalchemy import create_engine, Table, Column, String, Integer, MetaData, inspect
 
+from dotenv import load_dotenv
+load_dotenv()  # Carga variables de entorno desde .env si es necesario
+
 # --- CONFIGURACIÓN DE POSTGRES ---
-DB_USER = "postgres"
-DB_PASS = "postgres"
-DB_HOST = "localhost"  # Nombre del servicio en docker-compose
-DB_PORT = "5432"
-DB_NAME = "ingresos_db"
+DB_USER = os.getenv("DB_USER", "postgres")
+DB_PASS = os.getenv("DB_PASS", "postgres")
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_PORT = os.getenv("DB_PORT", "5432")
+DB_NAME = os.getenv("DB_NAME", "ingresos_db")
 
 tabla = "ingresos"  # Nombre de la tabla en PostgreSQL
 
