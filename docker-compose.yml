@@ -18,7 +18,7 @@ services:
     command: python /app/app.py
     #command: pip install psycopg2-binary && python /app/app.py
     ports:
-      - "8090:8080"
+      - "8091:8080"
     #env_file:
     # - .env
     volumes:

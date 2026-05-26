@@ -54,7 +54,7 @@ def obtener_datos():
     if not df_original.empty:
         # Seleccionar columnas
         df = df_original[[
-            'Nro.', 'Código', 'Clasificación', 'Descripción', 'Objeto Gasto', 'Observación'
+            'id', 'Código', 'Clasificación', 'Descripción', 'Objeto', 'Observación'
         ]]
         
         # Filtrar por códigos específicos
@@ -75,7 +75,7 @@ def serve_layout():
 
     return dbc.Container([
         dbc.Row([
-            dbc.Col(html.H2("Visualizador de Partidas (Redundancia Excel/DB)", className="text-center my-4"), width=12)
+            dbc.Col(html.H2("Partidas Presupuestarias", className="text-center my-4"), width=12)
         ]),
         
         dbc.Row([
