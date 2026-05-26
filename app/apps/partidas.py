@@ -1,3 +1,6 @@
+import os
+from dotenv import load_dotenv
+
 import dash
 from dash import dash_table, dcc, html
 from dash import dcc, html, dash_table, Input, Output, State, callback_context
@@ -7,9 +10,24 @@ from sqlalchemy import create_engine # Para la conexión a Postgres
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
+
+# --- Configuración de Base de Datos PostgreSQL ---
+load_dotenv()
+# Es buena práctica usar variables de entorno específicas para Postgres, pero puedes 
+# mantener los nombres de variables anteriores en tu archivo .env si lo prefieres.
+POSTGRES_USER = os.getenv('POSTGRES_USER') or 'postgres'
+POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD') or 'postgres'
+POSTGRES_HOST = os.getenv('POSTGRES_HOST') or 'localhost'
+POSTGRES_PORT = os.getenv('POSTGRES_PORT') or '5432' # Puerto por defecto 5432
+POSTGRES_DB = os.getenv('POSTGRES_DB') or 'ingresos_db'
+
+# Crear la URL de conexión para PostgreSQL usando psycopg2
+connection_string = f'postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}/{POSTGRES_DB}'
+engine = create_engine(connection_string)
+
 # Configuración de conexión a PostgreSQL
 # Ajusta estos valores con tus credenciales reales
-DB_URL = "postgresql://postgres:postgres@localhost:5432/ingresos_db"
+DB_URL = connection_string
 
 app.index_string = '''
 <!DOCTYPE html>

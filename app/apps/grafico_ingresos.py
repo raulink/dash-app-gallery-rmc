@@ -1,7 +1,7 @@
 import os
+from dotenv import load_dotenv
 import io
 import pandas as pd
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
 
 from dash import Dash, dcc, html, Input, Output, State, callback
