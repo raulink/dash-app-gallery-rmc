@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Informe Técnico - Necesidad Anual de Repuestos e Insumos</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm 15mm;
+            @bottom-right {
+                content: "Página " counter(page) " de " counter(pages);
+                font-family: 'Arial Narrow', Arial, sans-serif;
+                font-size: 9pt;
+                color: #718096;
+            }
+            @bottom-left {
+                content: "Mi Teleférico - Departamento de Mantenimiento";
+                font-family: 'Arial Narrow', Arial, sans-serif;
+                font-size: 9pt;
+                color: #718096;
+            }
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 10.5pt;
+            line-height: 1.4;
+            color: #2d3748;
+            margin: 0;
+            padding: 0;
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        /* Encabezado Corporativo / Portada */
+        .header-container {
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .company-title {
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            font-size: 13pt;
+            font-weight: bold;
+            color: #e74c3c;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0 5px 0;
+        }
+        
+        .report-title {
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            font-size: 20pt;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 10px 0 5px 0;
+            line-height: 1.2;
+        }
+        
+        .meta-info {
+            margin-top: 15px;
+            font-size: 9.5pt;
+            color: #4a5568;
+            background-color: #f7fafc;
+            padding: 10px 15px;
+            border-left: 4px solid #2c3e50;
+        }
+        
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+        
+        .meta-table td {
+            padding: 3px 0;
+            border: none;
+            background: none !important;
+            font-size: 9.5pt;
+        }
+        
+        /* Estilos de Títulos */
+        h1 {
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            font-size: 15pt;
+            color: #2c3e50;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 4px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            page-break-after: avoid;
+        }
+        
+        h2 {
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            font-size: 12pt;
+            color: #1a202c;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            border-left: 4px solid #e74c3c;
+            padding-left: 8px;
+            page-break-after: avoid;
+        }
+        
+        p {
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-top: 0;
+            margin-bottom: 12px;
+            padding-left: 20px;
+        }
+        
+        li {
+            margin-bottom: 4px;
+            text-align: justify;
+        }
+        
+        /* Tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0 25px 0;
+            page-break-inside: avoid;
+        }
+        
+        th {
+            background-color: #2c3e50;
+            color: white;
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            font-size: 10pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 8px 10px;
+            border: 1px solid #2c3e50;
+            text-align: left;
+        }
+        
+        td {
+            padding: 7px 10px;
+            border: 1px solid #e2e8f0;
+            font-size: 9.5pt;
+            vertical-align: middle;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        
+        .numeric {
+            text-align: right;
+        }
+        
+        .center {
+            text-align: center;
+        }
+        
+        /* Bloques de Fórmulas y Alertas */
+        .math-block {
+            text-align: center;
+            margin: 15px auto;
+            padding: 12px;
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 11.5pt;
+            page-break-inside: avoid;
+        }
+        
+        .math {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .callout-box {
+            background-color: #ebf8ff;
+            border-left: 4px solid #3182ce;
+            padding: 12px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+            page-break-inside: avoid;
+        }
+        
+        .callout-title {
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-bottom: 5px;
+            font-size: 11pt;
+        }
+        
+        .avoid-break {
+            page-break-inside: avoid;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <div class="company-title">Empresa Estatal de Transporte por Cable "Mi Teleférico"</div>
+        <div class="report-title">Informe Técnico: Justificación Operativa y Marco Metodológico para la Determinación de la Necesidad Anual de Repuestos e Insumos</div>
+        
+        <div class="meta-info">
+            <table class="meta-table">
+                <tr>
+                    <td style="width: 15%; font-weight: bold;">Para:</td>
+                    <td style="width: 45%;">Gerencia de Operación y Mantenimiento / Dirección General Ejecutiva</td>
+                    <td style="width: 15%; font-weight: bold;">Fecha:</td>
+                    <td style="width: 25%;">29 de Mayo de 2026</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">De:</td>
+                    <td>Ing. Raúl Mamani Cusi - Jefe del Departamento de Mantenimiento</td>
+                    <td style="font-weight: bold;">Código:</td>
+                    <td>INF-MNT-EETC-2026-042</td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold;">Asunto:</td>
+                    <td>Metodología de Proyección de Demanda y Optimización del POA de Almacenes</td>
+                    <td style="font-weight: bold;">Sistema:</td>
+                    <td>SIMyO / SGH Integrado</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <p>El presente informe técnico establece los lineamientos formales, la justificación financiera y la metodología de ingeniería de confiabilidad aplicada por el Departamento de Mantenimiento para modelar, proyectar y determinar la necesidad neta anual de activos, repuestos e insumos críticos dentro de los almacenes de la Empresa Estatal de Transporte por Cable "Mi Teleférico" (EETC MT).</p>
+
+    <h1>1. Justificación Operativa y Financiera</h1>
+    
+    <h2>1.1. Contexto de Alta Disponibilidad</h2>
+    <p>Como red de transporte urbano masivo por cable, los sistemas electromecánicos de Mi Teleférico operan bajo regímenes severos de carga continua. La disponibilidad del sistema debe mantenerse por encima del 99.5% para garantizar la continuidad del servicio público y la seguridad de los usuarios. Esta exigencia operativa restringe los márgenes de error en la cadena de suministro de mantenimiento. Un quiebre de stock (stockout) en un componente crítico —como una pinza de embrague desembragable, un rodamiento de polea motriz o un sensor de proximidad inductivo— implica la detención inmediata de una línea de transporte, provocando pérdidas financieras directas e impacto social masivo.</p>
+
+    <h2>1.2. Optimización del Capital de Trabajo (POA vs. Sobrestock)</h2>
+    <p>Desde la perspectiva financiera, la adquisición desmedida de repuestos genera una inmovilización innecesaria del capital de trabajo del Estado, elevando el costo de almacenamiento por metro cuadrado y el riesgo inherente de obsolescencia tecnológica o degradación de materiales (por ejemplo, el vencimiento de polímeros, lubricantes y consumibles químicos). Por lo tanto, la formulación del Plan Operativo Anual (POA) de compras debe fundamentarse en un modelo matemático riguroso que equilibre de forma óptima el riesgo de desabastecimiento operativo y la eficiencia en el uso de recursos fiscales.</p>
+
+    <div class="callout-box">
+        <div class="callout-title">Objetivo Estratégico de Almacenes</div>
+        La determinación de la necesidad anual no busca simplemente acumular material, sino sincronizar el ritmo de reabastecimiento con la tasa real de falla y consumo del sistema electromecánico, maximizando la rotación del inventario sin comprometer el stock de seguridad.
+    </div>
+
+    <h1>2. Marco Metodológico: Frecuencia de Rotación y Consumo Diario</h1>
+    <p>La metodología adoptada abandona los métodos de estimación empírica o puramente históricos basados en compras pasadas, sustituyéndolos por un modelo dinámico de consumo continuo. Los pilares de este marco metodológico son:</p>
+
+    <h2>2.1. Ventana de Observación Estricta (<span class="math">t<sub>periodo</sub></span>)</h2>
+    <p>El modelo mide el tiempo transcurrido exacto en días entre el primer movimiento de salida registrado en el sistema de herramientas (SGH) o software de mantenimiento (SIMyO) y el último movimiento del periodo analizado. Esto permite aislar variables estacionales y determinar la tasa de consumo diario real, calculada mediante la fórmula:</p>
+    
+    <div class="math-block">
+        <span class="math">t<sub>periodo</sub> = Fecha<sub>Máxima_Salida</sub> − Fecha<sub>Mínima_Salida</sub> + 1</span>
+    </div>
+
+    <h2>2.2. Tiempo Medio Entre Salidas (MTBO - Mean Time Between Outputs)</h2>
+    <p>Complementariamente a la cantidad física total consumida, se modela el intervalo de tiempo promedio en que el personal técnico retira un ítem del almacén. El MTBO permite discernir si un repuesto presenta una demanda constante de alta frecuencia o si su consumo se debe a un evento correctivo puntual y aislado. Un ítem con un MTBO bajo indica una rotación constante y requiere una cadena de reposición ágil o contratos abiertos de suministro por volumen con fabricantes originales (Doppelmayr, Fatzer, Hiller Electric, etc.).</p>
+
+    <h2>2.3. Segmentación y Aislamiento por Línea de Transporte</h2>
+    <p>Debido a que cada línea de Mi Teleférico posee perfiles geométricos, longitudes, cantidad de torres, marcas de componentes específicos y regímenes de carga diferenciados (por ejemplo, la Línea Roja posee un flujo de pasajeros y desgaste distinto a la Línea Plateada o Morada), el cálculo de frecuencia y tiempo entre salidas se realiza de forma aislada por cada **Línea**. Esto evita la contaminación de datos agregados y permite dirigir los recursos a las zonas mecánicas con mayor tasa de desgaste.</p>
+
+    <div class="avoid-break">
+        <h1>3. Algoritmo Matemático de Proyección Anual</h1>
+        <p>Una vez establecida la tasa de consumo diario para un repuesto o insumo dentro de una línea específica durante la ventana de observación, se procede a proyectar linealmente su necesidad anual para los 365 días del ciclo operativo nacional. La ecuación fundamental de proyección de demanda neta anual (<span class="math">D<sub>anual</sub></span>) se define como:</p>
+
+        <div class="math-block">
+            <span class="math">D<sub>anual</sub> = [ ( &Sigma; Q<sub>periodo</sub> ) / t<sub>periodo</sub> ] &times; 365</span>
+        </div>
+        
+        <p>Donde las variables corresponden a:</p>
+        <ul>
+            <li><span class="math">&Sigma; Q<sub>periodo</sub></span>: Sumatoria total de las cantidades físicas retiradas del almacén durante el periodo observado (unidades, piezas, botes, etc.).</li>
+            <li><span class="math">t<sub>periodo</sub></span>: Duración de la ventana de observación expresada en días calendario reales.</li>
+            <li><span class="math">365</span>: Factor de extrapolación temporal para un año completo de operación del sistema de transporte.</li>
+        </ul>
+    </div>
+
+    <h2>3.1. Criterio de Redondeo Técnico e Inclusión de Stock de Seguridad</h2>
+    <p>Debido a que la cadena de suministro internacional y local trabaja con unidades enteras discretas, el valor obtenido de <span class="math">D<sub>anual</sub></span> se redondea al entero superior inmediato. Al valor proyectado final se le adiciona el factor de Stock de Seguridad Mínimo (<span class="math">SS</span>), calculado en función del tiempo de entrega del proveedor (Lead Time):</p>
+    
+    <div class="math-block">
+        <span class="math">SS = ( Consumo_Diario &times; Lead_Time_Proveedor ) &times; ( 1 + Factor_Riesgo )</span>
+    </div>
+
+    <div class="avoid-break">
+        <h1>4. Matriz de Aplicación Práctica en Familias Críticas</h1>
+        <p>A modo de demostración del funcionamiento del algoritmo metodológico, se expone la siguiente matriz de aplicación real basada en los datos históricos consolidados de movimientos de almacén, aislando la familia de insumos químicos (código 6-06) y repuestos mecánicos/eléctricos de alta rotación administrados por la Jefatura de Mantenimiento:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 12%;">Código Ítem</th>
+                    <th style="width: 28%;">Descripción del Componente</th>
+                    <th style="width: 10%;" class="numeric">Consumo Per.</th>
+                    <th style="width: 10%;" class="numeric">Días Per.</th>
+                    <th style="width: 12%;" class="numeric">Cons. Diario</th>
+                    <th style="width: 14%;" class="numeric">Proyección Anual</th>
+                    <th style="width: 14%;" class="numeric">Pedido POA + SS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="center">6-06-00111</td>
+                    <td>Protector Anticorrosivo Zinc Aluminio 400ml</td>
+                    <td class="numeric">48</td>
+                    <td class="numeric">31</td>
+                    <td class="numeric">1.54</td>
+                    <td class="numeric">565</td>
+                    <td class="numeric"><strong>620 Botes</strong></td>
+                </tr>
+                <tr>
+                    <td class="center">2-02-00463</td>
+                    <td>Base de Protección contra Sobretensiones PT</td>
+                    <td class="numeric">14</td>
+                    <td class="numeric">31</td>
+                    <td class="numeric">0.45</td>
+                    <td class="numeric">165</td>
+                    <td class="numeric"><strong>190 Piezas</strong></td>
+                </tr>
+                <tr>
+                    <td class="center">6-01-00361</td>
+                    <td>Disco Flap #60 (Insumo Mecánico)</td>
+                    <td class="numeric">124</td>
+                    <td class="numeric">31</td>
+                    <td class="numeric">4.00</td>
+                    <td class="numeric">1,460</td>
+                    <td class="numeric"><strong>1,600 Unidades</strong></td>
+                </tr>
+                <tr>
+                    <td class="center">2-01-00360</td>
+                    <td>Mandíbula Móvil A 108-C Ø 50mm (Pinza)</td>
+                    <td class="numeric">6</td>
+                    <td class="numeric">31</td>
+                    <td class="numeric">0.19</td>
+                    <td class="numeric">71</td>
+                    <td class="numeric"><strong>85 Piezas</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h1>5. Conclusiones y Recomendaciones Estratégicas</h1>
+    <ol>
+        <li><strong>Establecimiento de Contratos Abiertos por Volumen:</strong> Para los ítems identificados con una alta proyección anual (como el caso de consumibles mecánicos y protectores anticorrosivos), se recomienda abandonar el modelo de compras spot mensuales e implementar licitaciones anuales con entregas programadas. Esto garantiza estabilidad de precios y elimina la burocracia administrativa repetitiva.</li>
+        <li><strong>Sincronización Automática SIMyO - Almacén:</strong> Es mandatorio programar un trigger en la base de datos de PostgreSQL para que recalcule de forma mensual la tasa de consumo diario y actualice automáticamente el Punto de Reorden (ROP) mínimo aceptable en las fichas de inventario de almacenes de cada Línea.</li>
+        <li><strong>Aislamiento de Mantenimientos Correctivos Mayores:</strong> Para repuestos mecánicos pesados (como mandíbulas de pinzas o rodamientos de poleas), se debe cruzar la proyección lineal con el plan maestro de mantenimiento cíclico de Reparaciones Mayores, asegurando que la proyección no sobredimensione compras en años donde no corresponda realizar intervenciones mayores de infraestructura por cable.</li>
+    </ol>
+
+    <div style="margin-top: 40px; page-break-inside: avoid;">
+        <table style="width: 100%; margin: 0; border: none; background: none;">
+            <tr style="background: none;">
+                <td style="width: 50%; border: none; text-align: center; padding-top: 50px; background: none;">
+                    <div style="border-top: 1px solid #718096; width: 80%; margin: 0 auto; padding-top: 5px;">
+                        <strong>Ing. Raúl Mamani Cusi</strong><br>
+                        Jefe de Departamento de Mantenimiento<br>
+                        EETC "Mi Teleférico"
+                    </div>
+                </td>
+                <td style="width: 50%; border: none; text-align: center; padding-top: 50px; background: none;">
+                    <div style="border-top: 1px solid #718096; width: 80%; margin: 0 auto; padding-top: 5px;">
+                        <strong>Vo.Bo. Dirección General</strong><br>
+                        Área de Confiabilidad y Planificación<br>
+                        EETC "Mi Teleférico"
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
