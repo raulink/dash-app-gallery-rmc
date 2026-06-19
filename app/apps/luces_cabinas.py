@@ -7,18 +7,19 @@ import dash
 import dash_bootstrap_components as dbc
 
 from dash import dcc, html, Input, Output, dash_table
-
+from dotenv import load_dotenv
+load_dotenv()
+import os
 # ==========================================
 # 1. CONEXIÓN A BASE DE DATOS Y EXTRACCIÓN
 # ==========================================
-DB_USER = 'zona1'
-DB_PASS = 'Sistemas0.'
-DB_HOST = '192.168.100.60' # o la IP del servidor
-DB_NAME = 'opmt2'
-
+MYSQL_USER =  os.getenv('MYSQL_USER') or 'zona1'
+MYSQL_PASS = os.getenv('MYSQL_PASS') or 'Sistemas0.'
+MYSQL_HOST = os.getenv('MYSQL_HOST') or '192.168.100.60' # o la IP del servidor
+MYSQL_DB = os.getenv('MYSQL_DB') or 'opmt2'
 
 # Crear el motor de conexión (reemplaza con tus credenciales reales)
-engine = create_engine(f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}")
+engine = create_engine(f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASS}@{MYSQL_HOST}/{MYSQL_DB}")
 
 # Consulta SQL
 query = "SELECT * FROM `relevamiento_luces`"
@@ -227,7 +228,7 @@ def update_bar(sem):
     if not sem:
         return fig
 
-    ds = dbar[dbar['semana'] == sem]
+    ds = dbar[dbar['semana'] == sem]    
     # Se omiten las líneas "Total" en este gráfico para no alterar la escala respecto a las líneas individuales
     ds = ds[ds['linea'] != 'Total'] 
 

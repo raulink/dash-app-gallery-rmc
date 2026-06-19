@@ -13,7 +13,7 @@ filename = __name__.split("pages.")[1]
 notes = """
 #### Visualizador de Luces de cabinas
 
-Este gráfico muestra los ingresos de luces de cabinas en un formato visual. Puedes interactuar con el gráfico para obtener más detalles sobre cada punto de datos.
+Este gráfico muestra el porcentaje de luces de cabinas en formato visual. Puedes interactuar con el gráfico para obtener detalle de cada linea por semanas.
 
 
 ##### Realizado por :
