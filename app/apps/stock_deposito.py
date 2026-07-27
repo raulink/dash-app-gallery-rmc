@@ -62,9 +62,8 @@ def obtener_inventario_detallado():
         ])
 
 def obtener_precios():
-    #pg_uri = "postgresql+psycopg2://postgres:postgres@192.168.100.50:5433/ingresos_db"
-    pg_uri = "postgresql+psycopg2://postgres:postgres@localhost:5433/ingresos_db"
-    
+    pg_uri = "postgresql+psycopg2://postgres:postgres@192.168.100.50:5433/ingresos_db"
+        
     sql_precios = """
     SELECT DISTINCT ON (s.codigo)
            s.codigo,
